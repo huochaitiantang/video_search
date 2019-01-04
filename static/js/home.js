@@ -36,7 +36,7 @@ $(document).ready(function(){
                     console.log(ans);
                     $("#result_div").empty();
                     if(ans['cnt'] <= 0){
-                        $("#result_div").append("<div>search error: " + ans['error'] + " !</div>");
+		                $("#result_div").append("<div style='margin:10px;text-align:center;'>Error: " + ans['error'] + "!</div>")
                     }
                     else{
 		    		    display_result_videos(ans['video_paths'], ans['video_scores']);
@@ -59,19 +59,20 @@ $(document).ready(function(){
     }
 
 	function display_search_videos(video_paths){
-		$("#search_div").append("<div>select videos</div>")
+		$("#search_div").append("<div style='margin:10px;text-align:center;'>select videos</div>")
 		for(var i = 0; i < video_paths.length; i++){
-			var node_string = "<div><video src='" + video_paths[i] + "'></div>";
+			var node_string = "<div style='padding:10px;border: 2px solid #888888; border-radius: 5px; margin: 15px;'><video class='search_video' src='" + video_paths[i] + "'></div>";
 			$("#search_div").append(node_string);
 		}
-		$("video").attr({width:"200"})
-		$("video").mouseover(function(){
+		$(".search_video").attr({width:"200"})
+		$(".search_video").attr({height:"150"});
+		$(".search_video").mouseover(function(){
 			$(this).attr({controls: "controls"});
 		});
-		$("video").mouseout(function(){
+		$(".search_video").mouseout(function(){
 			$(this).removeAttr("controls");
 		});
-		$("video").click(function(){
+		$(".search_video").click(function(){
             ss = $(this).attr("src").split('/');
             name_id = ss[ss.length - 1];
 			$("#search_content").val(name_id);
@@ -80,16 +81,17 @@ $(document).ready(function(){
 
 
 	function display_result_videos(video_paths, video_scores){
-		$("#result_div").append("<div>result videos/match scores</div>")
+		$("#result_div").append("<div style='margin:10px;text-align:center;'>result videos / matched scores</div>")
 		for(var i = 0; i < video_paths.length; i++){
-			var node_string = "<div><video src='" + video_paths[i] + "'></video><span>" + video_scores[i] + "</span></div>";
+			var node_string = "<div style='padding:10px;border: 2px solid #888888; border-radius: 5px; margin: 15px;'><video class='result_video' src='" + video_paths[i] + "'></video><span style='vertical-align:top;margin-left:20px;'>" + video_scores[i] + "</span></div>";
 			$("#result_div").append(node_string);
 		}
-		$("video").attr({width:"200"});
-		$("video").mouseover(function(){
+		$(".result_video").attr({width:"200"});
+		$(".result_video").attr({height:"150"});
+		$(".result_video").mouseover(function(){
 			$(this).attr({controls: "controls"});
 		});
-		$("video").mouseout(function(){
+		$(".result_video").mouseout(function(){
 			$(this).removeAttr("controls");
 		});
 	}

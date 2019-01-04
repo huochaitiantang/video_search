@@ -59,7 +59,7 @@ def do_msg_search(filename):
     info['video_scores'] = []
     for i in range(info['cnt']):
         info['video_paths'].append(os.path.join(video_dir, video_ids[i]))
-        info['video_scores'].append(random.random())
+        info['video_scores'].append("{:.3f}".format(random.random()))
     return json.dumps(info)
 
 @app.route('/video/<filename>')
@@ -70,4 +70,4 @@ def get_video_file(filename):
 
 
 if __name__ == '__main__':
-    app.run(host="219.224.168.78", port=5010, debug=True)
+    app.run(host="219.224.168.78", port=5026, debug=True)
