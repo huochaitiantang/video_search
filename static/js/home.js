@@ -68,6 +68,9 @@ $(document).ready(function(){
 		$(".search_video").attr({height:"150"});
 		$(".search_video").mouseover(function(){
 			$(this).attr({controls: "controls"});
+            ss = $(this).attr("src").split('/');
+            name_id = ss[ss.length - 1];
+			$("#video_name").html(name_id);
 		});
 		$(".search_video").mouseout(function(){
 			$(this).removeAttr("controls");
@@ -81,7 +84,7 @@ $(document).ready(function(){
 
 
 	function display_result_videos(video_paths, video_scores){
-		$("#result_div").append("<div style='margin:10px;text-align:center;'>result videos / matched scores</div>")
+		$("#result_div").append("<div style='margin:10px;text-align:center;'>result videos / rank")
 		for(var i = 0; i < video_paths.length; i++){
 			var node_string = "<div style='padding:10px;border: 2px solid #888888; border-radius: 5px; margin: 15px;'><video class='result_video' src='" + video_paths[i] + "'></video><span style='vertical-align:top;margin-left:20px;'>" + video_scores[i] + "</span></div>";
 			$("#result_div").append(node_string);
@@ -90,6 +93,9 @@ $(document).ready(function(){
 		$(".result_video").attr({height:"150"});
 		$(".result_video").mouseover(function(){
 			$(this).attr({controls: "controls"});
+            ss = $(this).attr("src").split('/');
+            name_id = ss[ss.length - 1];
+			$("#video_name").html(name_id);
 		});
 		$(".result_video").mouseout(function(){
 			$(this).removeAttr("controls");
